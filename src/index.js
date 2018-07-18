@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import myData from './data.json';
 
 //SPIKE
 
@@ -42,38 +43,20 @@ class Question extends React.Component {
 class Survey extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            "question_id": "q1",
-            "sequence": "1",
-            "question": "How many buns in a bakers dozen?",
-            "response" : {
-                "type": "single-choice",
-                "response_options": [
-                    {
-                        "response_id": "A",
-                        "option_text": "10"
-                    },
-                    {
-                        "response_id": "B",
-                        "option_text": "11"
-                    },
-                    {
-                        "response_id": "C",
-                        "option_text": "12"
-                    },
-                    {
-                        "response_id": "D",
-                        "option_text": "13"
-                    }
-                ]
-            }
-        }
+        this.state = myData.questions;
+
     }
   render() {
+    let questions = this.state;
+    var questionComponents = Array(questions.length);
+    for (var i=0;i<questions.length;i++) {
+        questionComponents[i] = <Question question={questions[i]}/>
+    }
+
     return (
       <div className="game">
         <div className="game-board">
-          <Question question={this.state}/>
+            {questionComponents}
         </div>
       </div>
     );
