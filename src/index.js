@@ -21,7 +21,7 @@ function RadioButtonResponseGroup(props) {
     for (var i=0;i<props.question.response.response_options.length;i++) {
         responses[i] = RadioButtonResponse(props.question.question_id, props.question.response.response_options[i])
     }
-    return (<div>{responses}</div>);
+    return (<div className="responses-container">{responses}</div>);
 }
 
 class Question extends React.Component {
@@ -29,15 +29,13 @@ class Question extends React.Component {
 
     return (
       <div>
-        <div className="board-row">
+        <div>
             {this.props.question.sequence}. {this.props.question.question}
           <RadioButtonResponseGroup question={this.props.question}/>
         </div>
       </div>
     );
   }
-
-
 }
 
 class Survey extends React.Component {
@@ -54,8 +52,8 @@ class Survey extends React.Component {
     }
 
     return (
-      <div className="game">
-        <div className="game-board">
+      <div className="survey">
+        <div className="question-container">
             {questionComponents}
         </div>
       </div>
